@@ -1,54 +1,46 @@
-let noteTitle;
-let noteText;
-let saveNoteBtn;
-let newNoteBtn;
-let noteList;
 
-if (window.location.pathname === '/notes') {
-  noteTitle = document.querySelector('.note-title');
-  noteText = document.querySelector('.note-textarea');
-  saveNoteBtn = document.querySelector('.save-note');
-  newNoteBtn = document.querySelector('.new-note');
-  noteList = document.querySelectorAll('.list-container .list-group');
-}
 
-// Show an element
-const show = (elem) => {
-  elem.style.display = 'inline';
-};
-
-// Hide an element
-const hide = (elem) => {
-  elem.style.display = 'none';
-};
+var $noteTitle = $(".note-title");
+var $noteText = $(".note-textarea");
+var $saveNoteBtn = $(".save-note");
+var $newNoteBtn = $(".new-note");
+var $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
-  fetch('/api/notes', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+// This is the function for getting 
+// from the db //
 
-const saveNote = (note) =>
-  fetch('/api/notes', {
+  const getNotes = () => {
+    return $.ajax({
+      url: "/api/notes",
+      method: "GET",
+
+    });
+    
+  };
+
+// This is the function for saving 
+// the notes in db //
+
+  const saveNote = (note) => {
+  return $.ajax({
+    url: '/api/notes',
+    data: note,
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(note),
+
   });
 
-const deleteNote = (id) =>
-  fetch(`/api/notes/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  };
+
+
+  const deleteNote = (id) => {
+  return $.ajax({
+    url: "api/notes/" + id,
+    method: "DELETE",
   });
+ };
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);

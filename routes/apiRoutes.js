@@ -55,6 +55,8 @@ app.post("/api/notes", function (req, res) {
     let newId = 0;
 
 // console log the deleted note id as (noteID) //
+// and filtering the data //
+
     console.log(`Deleting note with id ${noteId}`);
     data = data.filter((currentNote) => {
 

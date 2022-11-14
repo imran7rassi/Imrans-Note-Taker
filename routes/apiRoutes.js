@@ -25,7 +25,8 @@ module.exports = function (app) {
     });
 
 
-// 
+// posting the api notes should receive 
+// a new note to save on the request body //
 
 app.post("/api/notes", function (req, res) {
     let newNote = req.body;
@@ -69,7 +70,7 @@ app.post("/api/notes", function (req, res) {
     }
 
     // writing the new data to the file //
-    
+
     fs.writeFileSync("./db/db.json", JSON.stringify(data));
     res.json(data);
   });

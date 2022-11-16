@@ -1,26 +1,27 @@
 
 // Dependencies //
 
-const express = require('express');
+const express = require("express");
+const fs = require("fs")
 
 // Express Configuration for the server //
 // and tells the node that we are creating an "express" server //
-
-    const app = express();
-
+    
 // creating environment variable port
-    const PORT = process.env.PORT || 3001;
+    const app = express();
+    const PORT = process.env.PORT || 5040;
 
 
 // we are asking the express for making
 // file in the public server
 // Sets up the Express app to handle data parsing //
 
-    app.use(express.static('public'));
-    app.use(express.urlencoded({ extended: true }));
-    
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
 // Parse the incoming JSON data //
-    app.use(express.json());
+    app.use("/assets", express.static("./assets"));
 
 
 // require the routes to route the files //
@@ -30,8 +31,8 @@ const express = require('express');
 
 // App listener added for listening //
 
-    app.listen(PORT, () => {
+    app.listen(PORT, function () {
 
-    console.log(`The Server is available at the localhost${PORT}`);
+    console.log("The Server is available at the localhost" + PORT);
 
     });

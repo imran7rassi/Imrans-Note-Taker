@@ -52,7 +52,7 @@ app.post("/api/notes", function (req, res) {
 // API request for deleting //
 
   app.delete("/api/notes/:id", function (req, res) {
-    let noteId = req.params.id;
+    let idSelected = JSON.parse(req.params.id);
     let newId = 0;
 
 // console log the deleted note id as (noteID) //

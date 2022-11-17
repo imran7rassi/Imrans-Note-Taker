@@ -4,6 +4,8 @@
 
 This project is an application called Note Taker that can be used to write and save notes.This is a simple Note Taker application that allows users to add, view saved notes and also delete the notes if the user don't need that note anymore. This application uses an express backend and save and retrieve note data from a JSON file. 
 
+* Deployed App <a href="https://protected-spire-97668.herokuapp.com/">Heroku</a>
+
 ## Table of Contents
 * [Installation](#installation)
 * [Video Walk Through](#videowalkthrough)

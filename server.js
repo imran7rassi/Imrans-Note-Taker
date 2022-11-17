@@ -1,38 +1,25 @@
+const express = require('express');
 
-// Dependencies //
+// app use express
+const app = express();
 
-const express = require("express");
-const fs = require("fs")
-
-// Express Configuration for the server //
-// and tells the node that we are creating an "express" server //
-    
 // creating environment variable port
-    const app = express();
-    const PORT = process.env.PORT || 5040;
+const PORT = process.env.PORT || 4050;
 
 
-// we are asking the express for making
-// file in the public server
-// Sets up the Express app to handle data parsing //
-
+// asks express to create a route for every file in the 'public' folder and give it a '/' route
+app.use(express.static('public'));
+// sets up express app to handel data parser, middle wear created req.body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-// Parse the incoming JSON data //
-    app.use("/assets", express.static("./assets"));
+// routes to route files
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
 
 
-// require the routes to route the files //
-    require('./routes/apiRoutes')(app);
-    require('./routes/htmlRoutes')(app);
-
-
-// App listener added for listening //
-
-    app.listen(PORT, function () {
-
-    console.log("The Server is available at the localhost" + PORT);
-
-    });
+// app listener - starts the server
+app.listen(PORT, () => {
+  console.log(`The Server is available at localhost:${PORT}`);
+});

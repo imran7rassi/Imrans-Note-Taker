@@ -2,27 +2,26 @@
 // Load Data //
 // these are the functions that links our routes to data sources //
 
-const path = require("path");
+const path = require('path');
 
-// Routing //
 
-module.exports = function(app) {
+// routing
+module.exports = (app) => {
 
-  // Creating the Routes 
-  // SHould return the notes.html file //
+  // creating routes
+  
+  // this get returns the notes.html file //
 
-    app.get("/notes", function(req, res) {
+  app.get('/notes', (req, res) => {
 
-    res.sendFile(path.join(__dirname, "../public/notes.html"));
-
+    res.sendFile(path.join(__dirname, '../public/notes.html'));
   });
 
-  // If no matching route is found default to home //
-  // Returning the index.html file //
-  app.get("*", function(req, res) {
+  // this get returns the index.html file.
+  app.get('*', (req, res) => {
 
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 
-  });
+  })
   
 };

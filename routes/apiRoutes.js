@@ -2,48 +2,48 @@
 // Load Data //
 // these are the functions that links our routes to data sources //
 
+const path = require('path');
+const fs = require('fs')
 
-const db = require("../db/db.json");
-const fs = require("fs");
-var path = require("path");
+// that's the npm package linked
+// to use the uniqid
+// But at first you have to do the "npm install uniqid"//
+// To run the uniqid
 
-// Routing //
-
-module.exports = function (app) {
-
-    const objectsList = JSON.parse(fs.readFileSync("./db/db.json", "utf8", (err) => {
-        if (err) throw err;
-      }));
-
-// added the API Get requests function //
-
-    app.get("/api/notes", function (req, res) {
-
-     return res.json(data);
-    });
+var uniqid = require('uniqid');
 
 
-// when users visit the page they are shown a JSON of
-// the data in thr table. //
+// routing
+module.exports = (app) => {
 
+  // the get api added to read the db.json
+  // and after reading return the notes to JSON //
 
+  app.get('/api/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../db/db.json'));
+  });
 
 // posting the api notes should receive 
 // a new note to save on the request body //
 
-app.post("/api/notes", function (req, res) {
-    let newNote = { title: req.body.title, text: req.body.text }; // New object built with 
-    newNote.id = objectsList.length.toString();
+  app.post('/api/notes', (req, res) => {
+    let db = fs.readFileSync('db/db.json');
+    db = JSON.parse(db);
+    res.json(db);
 
-// pushed new notes ine note file //
-    objectsList.push(newNote);
+    let userNote = {
+      title: req.body.title,
+      text: req.body.text,
+// that is for creating an uniqid //
 
-// writting the notes data to the selected file //
-    fs.writeFileSync("./db/db.json", JSON.stringify(data), function (err) {
-      if (err) throw err;
-    });
-// sending the response //
-    res.json(objectsList);
+      id: uniqid(),
+
+    };
+
+    db.push(userNote);
+    fs.writeFileSync('db/db.json', JSON.stringify(db));
+    res.json(db);
+
   });
 
 
@@ -51,30 +51,14 @@ app.post("/api/notes", function (req, res) {
 // deleting the notes from the saved notes //
 // API request for deleting //
 
-  app.delete("/api/notes/:id", function (req, res) {
-    let idSelected = JSON.parse(req.params.id);
-    let newId = 0;
-
-// console log the deleted note id as (noteID) //
-// and filtering the data //
-
-    console.log(`Deleting note with id ${noteId}`);
-    data = data.filter((currentNote) => {
-
-// returnning back //
-      return currentNote.id != noteId;
-
-    });
-
-
-    for (currentNote of data) {
-      currentNote.id = newId.toString();
-      newId++;
-    }
-
-    // writing the new data to the file //
-
-    fs.writeFileSync("./db/db.json", JSON.stringify(data));
-    res.json(data);
-  });
+  app.delete('/api/notes/:id', (req, res) => {
+  
+    let db = JSON.parse(fs.readFileSync('db/db.json'))
+  
+    let deleteNotes = db.filter(item => item.id !== req.params.id);
+  
+    fs.writeFileSync('db/db.json', JSON.stringify(deleteNotes));
+    res.json(deleteNotes);
+    
+  })
 };

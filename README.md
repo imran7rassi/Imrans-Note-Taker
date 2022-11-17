@@ -27,27 +27,28 @@ This project is an application called Note Taker that can be used to write and s
 
 ## Usage 
 
-1. "node index.js" To start the app.
-2. 
-3. 
-4. 
-5. 
-6. 
+1. Clone the repo.
+2. type "npm i" to install the necessary packages.
+3. the run "node server.js"
+4. Open the "localhost:4050" .
+5. Then you can use the Note Taker.
 
-![Team HTML Webpage Screenshot](./Assets/team_profile.png)
+![HTML Screenshot](./public/assets/images/Note%20taker%20HTMLpage.png)
+![Note Webpage Screenshot](./public/assets/images/Note%20taker%20notepage.png)
 
 ## License
 
 ![License: MIT](https://img.shields.io/github/license/TheInfamousGrim/orm-e-commerce-back-end?color=yellow)
 
-[MIT License](/LICENSE)
+[MIT License](./LICENSE)
 
 ## Credits
 
-- Bootstrap: https://getbootstrap.com/
-- NodeJS: https://nodejs.org/en/
-- Jest: https://www.npmjs.com/package/jest
-- Inquirer: https://www.npmjs.com/package/inquirer
+* <a href="https://nodejs.org/">Node.js</a>
+* <a href="https://www.npmjs.com/">NPM</a>
+* <a href="https://www.npmjs.com/package/express">Express.js</a>
+* <a href="https://www.npmjs.com/package/inquirer">Inquirer.js</a>
+* <a href="https://www.npmjs.com/package/uuid">uuid</a>
 
 ## Questions
 

@@ -23,8 +23,9 @@ This project is an application called Note Taker that can be used to write and s
 ## Video Walk Through
 
 
-![Demo for Walkthrough](./Assets/team-profile.gif)
+![Demo for Walkthrough](./public/assets/images/demo.gif)
 
+* You also can go through that link for <a href="https://drive.google.com/file/d/1SNWGBohtr1_xIpIP6sivgNbJXKDYgDmv/view">Video</a>
 ## Usage 
 
 1. Clone the repo.
